@@ -1,15 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!------<title> Website Layout | CodingLab</title>------>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-
-    <style>
-
+	
+	<title>Update Order</title>
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+	
+	<style type="text/css">
+		ul {
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		}
+		
+		li {
+		  float: left;
+		}
+		
+		li a {
+		  color: white;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		}
+		
+		li a:hover:not(.active) {
+			color: black;
+		}
+		
+		.active {
+		   color: grey;
+		}
+		
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 		
 		*{
@@ -130,35 +161,66 @@
 		  color: black;
 		}		
 	
+	
 	</style>
-
+	
+	
 </head>
+	
 <body>
 
-  <nav>
-    <div class="menu">
-      <div class="logo">
-        <a href="#">ICT502</a>
-      </div>
-    </div>
-  </nav>
-  
-  <div class="img"></div>
-  
-  <div class="center">
-    <div class="title">A Convenience Store System</div>
-    <div class="sub_title">This system is created for employees of the Munawar & Tumijah Convenience Store such as manager, storekeeper and cashier. 
-         </div>
-        <div class="sub_title">A simple report can be generated on a daily basis to know the purchase details and list of employees working in the store.
-           </div>
-           <div class="sub_title"> The employees can also update, insert, and delete items as needed.
-        </div>
-    <div class="btns">
-      <button onclick="location.href='adminLogin.html'">Manager</button>
-       <button onclick="location.href='adminLogin.html'" type="button">Storekeeper</button>
-       <button onclick="location.href='adminLogin.html'" type="button">Cashier</button>
-    
-    </div>
-  </div>
+	<nav>
+	    <div class="menu">
+	      <div class="logo">
+	        <a href="#">ICT502</a>
+	      </div>
+	      <ul>
+	      	
+			<li><a href="ListOrderController">Back</a>
+		  </ul>
+	    </div>
+	</nav>
+	
+	<br><br><br><br>
+	
+	<div class="container col-md-5">
+		<div class="card">
+			<div class="card-body">
+			
+			<form method="post" action="UpdateOrderController">
+					<caption>
+						<h2> Update Order</h2>
+					</caption>
+					
+					<fieldset class="form-group">
+						<label>Order ID</label> 
+						<input type="text" class="form-control" id="orderID" name="orderID" required="required" value="${od.orderID}"/>
+					</fieldset>
+					
+					<fieldset class="form-group">
+						<label>Order Date</label> 
+						<input type="date" class="form-control" id="orderdate" name="orderdate" required="required" value="${od.orderdate}"/>
+					</fieldset>
+					
+					<fieldset class="form-group">
+						<label>Product ID</label> 
+						<input type="text" class="form-control" id="productID" name="productID" required="required" value="${od.productID}"/>
+					</fieldset>
+					<fieldset class="form-group">
+						<label>Quantity</label> 
+						<input type="number" class="form-control" id="quantity" name="quantity" required="required" value="${od.quantity}"/>
+					</fieldset>
+						<fieldset class="form-group">
+						<label>Total Amount</label> 
+						<input type="text" class="form-control" id="totalamount" name="totalamount" required="required" value="${od.totalamount}"/>
+					</fieldset>
+								
+										
+					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="reset" class="btn btn-success">Reset</button>
+			</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -124,7 +124,7 @@
 		}
 		.center{
 		  position: absolute;
-		  top: 33%;
+		
 		  left: 50%;
 		  transform: translate(-50%, -50%);
 		  width: 100%;
@@ -205,7 +205,7 @@
 		    </div>
 	    </nav>
 	
-		<br>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
 		
 		<div class="center">
 	
@@ -225,6 +225,7 @@
 				<th>Email</th>
 				<th>Phone Number</th>
 				<th>Address</th>
+				<th>Job ID</th>
 				<th colspan="3">Actions</th>
 			</tr>
 
@@ -236,10 +237,11 @@
 				<td><c:out value="${em.email}" /></td>
 				<td><c:out value="${em.empphonenum}" /></td>
 				<td><c:out value="${em.address}" /></td>
+				<td><c:out value="${em.jobID}" /></td>
 							
 				<td><a class="btn btn-primary" href="UpdateEmployeeController?employeeID=<c:out value="${em.employeeID}"/>">Update</a></td>
 				
-				<td><button class="btn btn-danger" id="<c:out value="${em.employeeID}"/>" onclick="confirmation(this.employeeID)">Delete</button></td>
+				<td><button class="btn btn-danger" id="<c:out value="${em.employeeID}"/>" onclick="confirmation(this.id)">Delete</button></td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -247,11 +249,11 @@
 	
 	
 	<script>
-		function confirmation(employeeID) {
-			console.log(employeeID);
+		function confirmation(id) {
+			console.log(id);
 			var r = confirm("Are you sure you want to delete?");
 			if (r == true) {
-				location.href = 'DeleteEmployeeController?employeeID=' + employeeID;
+				location.href = 'DeleteEmployeeController?employeeID=' + id;
 				alert("Employee successfully deleted");
 			} else {
 				return false;

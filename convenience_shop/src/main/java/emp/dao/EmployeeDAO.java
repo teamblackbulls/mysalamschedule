@@ -17,7 +17,7 @@ public class EmployeeDAO {
 	static ResultSet rs = null;
 	
 	private String firstname, lastname,email, empphonenum, address;
-	private int employeeID;
+	private int employeeID, jobID;
 
 	//add employee
 	public void addEmployee(Employee bean) {
@@ -27,6 +27,7 @@ public class EmployeeDAO {
 		email= bean.getEmail();
 		empphonenum = bean.getEmpphonenum();
 		address = bean.getAddress();
+	
 		
 		try {
 			//call getConnection() method
@@ -40,6 +41,7 @@ public class EmployeeDAO {
 			ps.setString(4,email);
 			ps.setString(5, empphonenum);
 			ps.setString(6,address);
+	
 
 			//execute query
 			ps.executeUpdate();
@@ -77,6 +79,7 @@ public class EmployeeDAO {
 				em.setEmail(rs.getString("email"));
 				em.setEmpphonenum(rs.getString("empphonenum"));
 				em.setAddress(rs.getString("address"));
+				em.setJobID(rs.getInt("jobID"));
 				
 				employees.add(em);
 			}
@@ -113,6 +116,7 @@ public class EmployeeDAO {
 					em.setEmail(rs.getString("email"));
 					em.setEmpphonenum(rs.getString("empphonenum"));
 					em.setAddress(rs.getString("address"));
+					em.setJobID(rs.getInt("jobID"));
 					
 				}
 				
@@ -155,20 +159,23 @@ public class EmployeeDAO {
 			email= bean.getEmail();
 			empphonenum = bean.getEmpphonenum();
 			address = bean.getAddress();
+			jobID = bean.getJobID();
 			
 			try {
 				//call getConnection method
 				con = ConnectionManager.getConnection();
 				
 				//create statement
-				ps = con.prepareStatement("UPDATE EMPLOYEE SET firstname=?, lastname=?, email=?, empphonenum=?, address=? WHERE employeeID=?");
+				ps = con.prepareStatement("UPDATE EMPLOYEE SET firstname=?, lastname=?, email=?, empphonenum=?, address=?, jobID=? WHERE employeeID=?");
 				
 				ps.setString(1,firstname);
 				ps.setString(2, lastname);
 				ps.setString(3,email);
 				ps.setString(4, empphonenum);
 				ps.setString(5,address);
-				ps.setInt(6,employeeID);
+				ps.setInt(6,jobID);
+				ps.setInt(7,employeeID);
+				
 
 				//execute query
 				ps.executeUpdate();

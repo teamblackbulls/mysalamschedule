@@ -172,7 +172,7 @@
 	<nav>
 	    <div class="menu">
 	      <div class="logo">
-	        <a href="#">MasjidSalam</a>
+	        <a href="#">ICT502</a>
 	      </div>
 	      <ul>
 	      	
@@ -193,21 +193,28 @@
 					</caption>
 					
 					<fieldset class="form-group">
-						<label>Order Date</label> 
-						<input type="date" class="form-control" id="orderDate" name="orderDate" required="required">
+						<label>Order ID</label> 
+						<input type="text" class="form-control" id="orderID" name="orderID" required="required" placeholder="3">
 					</fieldset>
+					
 					<fieldset class="form-group">
-						<label>Employee ID</label> 
-						<input type="text" class="form-control" id="prodId" name="prodId" required="required">
+						<label>Order Date</label> 
+						<input type="date" class="form-control" id="orderdate" name="orderdate" required="required">
 					</fieldset>
+					
 					<fieldset class="form-group">
 						<label>Product ID</label> 
-						<input type="text" class="form-control" id="prodId" name="prodId" required="required">
+						<input type="text" class="form-control" id="productID" name="productID" required="required" placeholder="2">
 					</fieldset>
 					<fieldset class="form-group">
 						<label>Quantity</label> 
-						<input type="number" class="form-control" id="quantity" name="quantity" required="required">
+						<input type="number" class="form-control" id="quantity" name="quantity" required="required" placeholder="15">
 					</fieldset>
+						<fieldset class="form-group">
+						<label>Total Amount (RM)</label> 
+						<input type="text" class="form-control" id="totalamount" name="totalamount" required="required" placeholder="20.50">
+					</fieldset>
+								
 										
 					<button type="submit" class="btn btn-success">Submit</button>
 					<button type="reset" class="btn btn-success">Reset</button>

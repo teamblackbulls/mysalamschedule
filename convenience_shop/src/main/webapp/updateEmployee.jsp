@@ -171,7 +171,7 @@
 	<nav>
 	    <div class="menu">
 	      <div class="logo">
-	        <a href="#">MasjidSalam</a>
+	        <a href="#">ICT502</a>
 	      </div>
 	      <ul>
 	      	
@@ -215,6 +215,11 @@
 					<fieldset class="form-group">
 						<label>Address</label> 
 						<input type="text" class="form-control" id="address" name="address" value="${em.address}"/>
+					</fieldset>
+					
+					<fieldset class="form-group">
+						<label>Job ID</label> 
+						<input type="text" class="form-control" id="jobID" name="jobID" value="${em.jobID}"/>
 					</fieldset>
 					
 					<button type="submit" class="btn btn-success">Submit</button>

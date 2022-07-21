@@ -182,7 +182,7 @@
 	<nav>
 	    <div class="menu">
 	      <div class="logo">
-	        <a href="#">MasjidSalam</a>
+	        <a href="#">ICT502</a>
 	      </div>
 	      <ul>
 	      	
@@ -203,15 +203,15 @@
 					</caption>
 					<fieldset class="form-group">
 						<label>Employee ID</label> 
-						<input type="text" class="form-control" id="employeeID" name="employeeID" required="required">
+						<input type="text" class="form-control" id="employeeID" name="employeeID" required="required" placeholder="12033">
 					</fieldset>
 					<fieldset class="form-group">
 						<label>First Name</label> 
-						<input type="text" class="form-control" id="firstname" name="firstname" required="required">
+						<input type="text" class="form-control" id="firstname" name="firstname" required="required" placeholder="Ahmad">
 					</fieldset>
 					<fieldset class="form-group">
 						<label>Last Name</label> 
-						<input type="text" class="form-control" id="lastname" name="lastname" required="required">
+						<input type="text" class="form-control" id="lastname" name="lastname" required="required" placeholder="Roslan">
 					</fieldset>
 					<fieldset class="form-group">
 						<label>Email</label> 
@@ -219,12 +219,12 @@
 					</fieldset>
 					<fieldset class="form-group">
 						<label>Phone Number</label> 
-						<input type="text" class="form-control" id="empphonenum" name="empphonenum" required="required">
+						<input type="text" class="form-control" id="empphonenum" name="empphonenum" required="required" placeholder="0182736443">
 					</fieldset>
 	
 					<fieldset class="form-group">
 						<label>Address</label> 
-						<input type="text" class="form-control" id="address" name="address">
+						<input type="text" class="form-control" id="address" name="address" placeholder="Enter employee address..">
 					</fieldset>
 	
 					<button type="submit" class="btn btn-success">Submit</button>

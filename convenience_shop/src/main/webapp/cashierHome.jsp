@@ -183,11 +183,11 @@
   
   <div class="center">
     <div class="title">Welcome Cashier!</div>
-    <div class="sub_title">This page is created for cashier of the store to manage all the products. 
+    <div class="sub_title">This page is created for cashier of the store to manage all of the orders. 
          </div>
-        <div class="sub_title">They can add new product into the system and update the products via the system.
+        <div class="sub_title">They can add new order into the system and update the orders via the system.
            </div>
-           <div class="sub_title"> This system also allows storekeeper to view and delete products. 
+           <div class="sub_title"> This system also allows cashier to view and delete orders. 
         </div>
     <div class="btns">
       <button onclick="location.href='ListOrderCashierController'" >Manage Orders</button>

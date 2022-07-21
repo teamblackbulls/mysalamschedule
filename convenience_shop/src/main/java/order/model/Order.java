@@ -1,69 +1,116 @@
 package order.model;
 
+import java.sql.Date;
+
+import emp.model.Employee;
 import product.model.Product;
 
 public class Order {
-		private int orderId;
-		private String orderDate;
-		private Product prod;
-		private int prodId;
+
+		private int orderID;
+		
+		private Date orderdate;
+		
+		private Product product;
+		private int productID;
+		
 		private int quantity;
-		private int empId;
+		
+		private Employee employee;
+		private int employeeID;
+		
 		private double totalamount;
 		
 		
 		public Order() {
 			
 		}
-		public int getOrderId() {
-			return orderId;
+
+
+		public int getOrderID() {
+			return orderID;
 		}
-		public void setOrderId(int orderId) {
-			this.orderId = orderId;
+
+
+		public void setOrderID(int orderID) {
+			this.orderID = orderID;
 		}
-		public String getOrderDate() {
-			return orderDate;
+
+
+
+		public Date getOrderdate() {
+			return orderdate;
 		}
-		public void setOrderDate(String orderDate) {
-			this.orderDate = orderDate;
+
+
+		public void setOrderdate(Date orderdate) {
+			this.orderdate = orderdate;
 		}
-		
-		
-		
-		
-		public Product getProd() {
-			return prod;
+
+
+		public Product getProduct() {
+			return product;
 		}
-		public void setProd(Product prod) {
-			this.prod = prod;
+
+
+		public void setProduct(Product product) {
+			this.product = product;
 		}
-		
-		
-		
-		public int getProdId() {
-			return prodId;
+
+
+		public int getProductID() {
+			return productID;
 		}
-		public void setProdId(int ProdId) {
-			this.prodId = prodId;
+
+
+		public void setProductID(int productID) {
+			this.productID = productID;
 		}
+
+
 		public int getQuantity() {
 			return quantity;
 		}
-		public void setQuantity(int Quantity) {
+
+
+		public void setQuantity(int quantity) {
 			this.quantity = quantity;
 		}
-		public int getEmpId() {
-			return empId;
+
+		
+
+		public Employee getEmployee() {
+			return employee;
 		}
-		public void setEmpId(int empId) {
-			this.empId = empId;
+
+
+		public void setEmployee(Employee employee) {
+			this.employee = employee;
 		}
+
+
+		public int getEmployeeID() {
+			return employeeID;
+		}
+
+
+		public void setEmployeeID(int employeeID) {
+			this.employeeID = employeeID;
+		}
+
+
 		public double getTotalamount() {
-			// TODO Auto-generated method stub
-			return 0;
+			return totalamount;
 		}
+
+
 		public void setTotalamount(double totalamount) {
 			this.totalamount = totalamount;
 		}
+		
+		
+		
+		
+		
 }
 

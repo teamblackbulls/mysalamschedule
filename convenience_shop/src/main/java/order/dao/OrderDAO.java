@@ -1,6 +1,7 @@
 package order.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -18,30 +19,32 @@ public class OrderDAO {
 	static ResultSet rs = null;
 	
 	private int orderID, productID, quantity, employeeID;
-	private String orderdate;
+	private Date orderdate;
 	double totalamount;
 
 	
 	//add order
 	public void addOrder(Order bean) {
-		employeeID = bean.getEmpId();
-		orderdate = bean.getOrderDate();
-		productID = bean.getProdId();
+		orderID = bean.getOrderID();
+
+		orderdate = bean.getOrderdate();
+		productID = bean.getProductID();
 		quantity= bean.getQuantity();
 		totalamount = bean.getTotalamount();
+	
 		
 		try {
 			//call getConnection() method
 			con = ConnectionManager.getConnection();
 			
 			//create statement
-			ps = con.prepareStatement("INSERT INTO orders(employeeID, orderdate, productID, quantity, totalamount)VALUES(?,?,?,?,?)");
-			ps.setInt(1,employeeID);
-			ps.setString(2, orderdate);
+			ps = con.prepareStatement("INSERT INTO orderdetail(orderID, orderdate, productID, quantity, totalamount)VALUES(?,?,?,?,?)");
+			ps.setInt(1,orderID);
+			ps.setDate(2,orderdate);
 			ps.setInt(3,productID);
 			ps.setInt(4,quantity);
 			ps.setDouble(5,totalamount);
-
+	
 			//execute query
 			ps.executeUpdate();
 			System.out.println("Successfully inserted");
@@ -64,21 +67,19 @@ public class OrderDAO {
 			
 			//create statement
 			st = con.createStatement();
-			String sql = "SELECT * FROM orders ORDER BY orderID";
+			String sql = "SELECT * FROM orderdetail ORDER BY orderID";
 			
 			//execute query
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {		//process result
 				Order od = new Order();
-				od.setOrderId(rs.getInt("orderID"));
-				od.setEmpId(rs.getInt("employeeID"));
-				od.setOrderDate(rs.getString("orderdate"));
-				od.setProdId(rs.getInt("productID"));
+				od.setOrderID(rs.getInt("orderID"));
+				od.setOrderdate(rs.getDate("orderdate"));
+				od.setProductID(rs.getInt("productID"));
 				od.setQuantity(rs.getInt("quantity"));
-				od.setTotalamount(rs.getDouble("totalamount"));
-				
-			
+				od.setTotalamount(rs.getInt("totalamount"));
+
 				orders.add(od);
 			}
 			
@@ -101,17 +102,16 @@ public class OrderDAO {
 			con = ConnectionManager.getConnection();
 			
 			//create statement
-			ps= con.prepareStatement("SELECT * FROM orders WHERE orderID=?");
+			ps= con.prepareStatement("SELECT * FROM orderdetail WHERE orderID=?");
 			ps.setInt(1, orderID);
 			
 			//execute query
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				
-				od.setOrderId(rs.getInt("orderID"));
-				od.setEmpId(rs.getInt("employeeID"));
-				od.setOrderDate(rs.getString("orderdate"));
-				od.setProdId(rs.getInt("productID"));
+				od.setOrderID(rs.getInt("orderID"));
+				od.setOrderdate(rs.getDate("orderdate"));
+				od.setProductID(rs.getInt("productID"));
 				od.setQuantity(rs.getInt("quantity"));
 				od.setTotalamount(rs.getDouble("totalamount"));
 					
@@ -134,7 +134,7 @@ public class OrderDAO {
 			con = ConnectionManager.getConnection();
 			
 			//create statement
-			ps = con.prepareStatement("DELETE FROM orders WHERE orderID=?");
+			ps = con.prepareStatement("DELETE FROM orderdetail WHERE orderID=?");
 			ps.setInt(1, orderID);
 			
 			//execute query
@@ -150,10 +150,10 @@ public class OrderDAO {
 	
 	//update product
 	public void updateOrder(Order bean) {
-		orderID = bean.getOrderId();
-		employeeID = bean.getEmpId();
-		orderdate = bean.getOrderDate();
-		productID = bean.getProdId();
+		orderID = bean.getOrderID();
+		employeeID = bean.getEmployeeID();
+		orderdate = bean.getOrderdate();
+		productID = bean.getProductID();
 		quantity= bean.getQuantity();
 		totalamount = bean.getTotalamount();
 		
@@ -162,13 +162,13 @@ public class OrderDAO {
 			con = ConnectionManager.getConnection();
 			
 			//create statement
-			ps = con.prepareStatement("UPDATE orders SET  employeeID=?, orderdate=?, productID=?, quantity=?, totalamount=? WHERE orderID=?");
+			ps = con.prepareStatement("UPDATE orderdetail SET  orderdate=?, productID=?, quantity=?, totalamount=? WHERE orderID=?");
 			
-			ps.setInt(1,employeeID);
-			ps.setString(2, orderdate);
-			ps.setInt(3,productID);
-			ps.setInt(4,quantity);
-			ps.setDouble(5,totalamount);
+			ps.setDate(1, orderdate);
+			ps.setInt(2,productID);
+			ps.setInt(3,quantity);
+			ps.setDouble(4,totalamount);
+			ps.setInt(5,orderID);
 			
 			//execute query
 			ps.executeUpdate();
@@ -182,5 +182,8 @@ public class OrderDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 }
 

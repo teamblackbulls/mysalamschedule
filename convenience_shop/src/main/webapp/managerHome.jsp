@@ -155,16 +155,16 @@
   
   <div class="center">
     <div class="title">Welcome Manager!</div>
-    <div class="sub_title">This page is created for storekeeper of the store to manage all the products. 
+    <div class="sub_title">This page is created for manager of the store to manage all of the orders, products and employees. 
          </div>
-        <div class="sub_title">They can add new product into the system and update the products via the system.
+        <div class="sub_title">They can add new entries into the system and update the previous entries via the system.
            </div>
-           <div class="sub_title"> This system also allows storekeeper to view and delete products. 
+           <div class="sub_title"> This system also allows manager to view and delete orders, products and employees. 
         </div>
     <div class="btns">
       <button onclick="location.href='ListOrderController'" >Manage Orders</button>
       <button onclick="location.href='ListProductController'">Manage Products</button>
-       <button onclick="location.href='ListEmployeeController'" type="button">Manage Employees</button>
+      <button onclick="location.href='ListEmployeeController'" type="button">Manage Employees</button>
     </div>
   </div>
   

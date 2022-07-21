@@ -130,7 +130,7 @@
 		}
 		.center{
 		  position: absolute;
-		  top: 33%;
+	
 		  left: 50%;
 		  transform: translate(-50%, -50%);
 		  width: 100%;
@@ -211,6 +211,8 @@
 		    </div>
 	    </nav>
 	    
+	    <br><br><br><br><br><br><br><br><br><br><br><br>
+	    
 	    <div class="center">
 	
 			<div class="title">List of Orders</div><br>
@@ -223,22 +225,26 @@
 	
 			<table border="1">
 				<tr>
-					<th>Customer Id</th>
-					<th>Product Id</th>
+					<th>Order ID</th>
+					<th>Order Date</th>
+					<th>Product ID</th>
 					<th>Quantity</th>
-					<th>Total Price</th>
+					<th>Total Amount</th>
+				
 		
 					<th colspan="3">Action</th>
 				</tr>
 				<c:forEach items="${orders}" var="od" varStatus="orders">
 				<tr>
 					<td><c:out value="${od.orderID}"/></td>
+					<td><c:out value="${od.orderdate}"/></td>
 					<td><c:out value="${od.productID}"/></td>
 					<td><c:out value="${od.quantity}"/></td>
 					<td><c:out value="${od.totalamount}"/></td>
-					<td><a class="btn btn-primary" href="ViewOrderController?id=<c:out value="${od.orderID}"/>">View</a></td> 
-					<td><a class="btn btn-primary" href="UpdateOrderController?id=<c:out value="${od.orderId}"/>">Update</a></td>
-					<td><button class="btn btn-danger" id="<c:out value="${od.orderId}"/>" onclick="confirmation(this.id)">Delete</button></td>
+					
+					<td><a class="btn btn-warning" href="ViewOrderController?orderID=<c:out value="${od.orderID}"/>">View</a></td> 
+					<td><a class="btn btn-primary" href="UpdateOrderController?orderID=<c:out value="${od.orderID}"/>">Update</a></td>
+					<td><button class="btn btn-danger" id="<c:out value="${od.orderID}"/>" onclick="confirmation(this.id)">Delete</button></td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -251,7 +257,7 @@
 			var r = confirm("Are you sure you want to delete?");
 			if(r == true)
 			{
-				location.href = 'DeleteOrderController?id=' + id;
+				location.href = 'DeleteOrderController?orderID=' + id;
 				alert("Order successfully deleted");
 			}
 			else{return false;}

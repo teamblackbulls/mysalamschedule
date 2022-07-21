@@ -8,6 +8,9 @@ public class Employee {
 	private String empphonenum;
 	private String address;
 	
+	private Job job;
+	private int jobID;
+	
 	public Employee() {
 		
 	}
@@ -59,5 +62,25 @@ public class Employee {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public Job getJob() {
+		return job;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
+	}
+
+	public int getJobID() {
+		return jobID;
+	}
+
+	public void setJobID(int jobID) {
+		this.jobID = jobID;
+	}
+	
+	
+	
+	
 	
 }

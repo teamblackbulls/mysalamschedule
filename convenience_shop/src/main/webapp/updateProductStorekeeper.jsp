@@ -170,7 +170,7 @@
 	<nav>
 	    <div class="menu">
 	      <div class="logo">
-	        <a href="#">MasjidSalam</a>
+	        <a href="#">ICT502</a>
 	      </div>
 	      <ul>
 	      	

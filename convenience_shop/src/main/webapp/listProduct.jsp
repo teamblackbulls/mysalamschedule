@@ -213,7 +213,7 @@
 			  </ul>
 		    </div>
 	    </nav>
-		<br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div class="center">
 			<div class="title">List of Products</div><br>
 			
@@ -243,18 +243,18 @@
 								
 					<td><a class="btn btn-primary" href="UpdateProductController?productID=<c:out value="${p.productID}"/>">Update</a></td>
 					
-					<td><button class="btn btn-danger" id="<c:out value="${p.productID}"/>" onclick="confirmation(this.productID)">Delete</button></td>
+					<td><button class="btn btn-danger" id="<c:out value="${p.productID}"/>" onclick="confirmation(this.id)">Delete</button></td>
 				</tr>
 				</c:forEach>
 			</table>
 		</div>
 	
 	<script>
-		function confirmation(productID) {
-			console.log(productID);
+		function confirmation(id) {
+			console.log(id);
 			var r = confirm("Are you sure you want to delete?");
 			if (r == true) {
-				location.href = 'DeleteProductController?productID=' + productID;
+				location.href = 'DeleteProductController?productID=' + id;
 				alert("Product successfully deleted");
 			} else {
 				return false;

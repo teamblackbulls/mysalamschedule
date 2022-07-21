@@ -168,6 +168,7 @@ public class ProductDAO {
 			ps.setString(4,productcategory);
 			ps.setInt(5,productID);
 			
+			
 			//execute query
 			ps.executeUpdate();
 			

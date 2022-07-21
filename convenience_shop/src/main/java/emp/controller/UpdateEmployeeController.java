@@ -54,6 +54,7 @@ public class UpdateEmployeeController extends HttpServlet {
 		em.setEmail(request.getParameter("email"));
 		em.setEmpphonenum(request.getParameter("empphonenum"));
 		em.setAddress(request.getParameter("address"));
+		em.setJobID(Integer.parseInt(request.getParameter("jobID")));	
 		
 		dao.updateEmployee(em); //invoke method updateEmployee() in EmployeeDAO
 		

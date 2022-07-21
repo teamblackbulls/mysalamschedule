@@ -42,6 +42,7 @@ public class AddEmployeeController extends HttpServlet {
 		em.setEmail(request.getParameter("email"));
 		em.setEmpphonenum(request.getParameter("empphonenum"));
 		em.setAddress(request.getParameter("address"));
+
 		
 		dao.addEmployee(em); //invoke method addEmployee() in EmployeeDAO
 		

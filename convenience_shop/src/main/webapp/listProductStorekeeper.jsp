@@ -130,7 +130,7 @@
 		}
 		.center{
 		  position: absolute;
-		  top: 44%;
+
 		  left: 50%;
 		  transform: translate(-50%, -50%);
 		  width: 100%;
@@ -211,6 +211,7 @@
 		</div>
 	</nav>
   
+  <br><br><br><br><br><br><br><br><br><br><br><br>
   
   <div class="center">
 	
@@ -241,7 +242,7 @@
 			
 				<td><a class="btn btn-primary" href="UpdateProductStorekeeperController?productID=<c:out value="${p.productID}"/>">Update</a></td>
 				
-				<td><button class="btn btn-danger" id="<c:out value="${p.productID}"/>" onclick="confirmation(this.productID)">Delete</button></td>
+				<td><button class="btn btn-danger" id="<c:out value="${p.productID}"/>" onclick="confirmation(this.id)">Delete</button></td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -250,11 +251,11 @@
 	
 	
 	<script>
-		function confirmation(productID) {
-			console.log(productID);
+		function confirmation(id) {
+			console.log(id);
 			var r = confirm("Are you sure you want to delete?");
 			if (r == true) {
-				location.href = 'DeleteProductController?productID=' + productID;
+				location.href = 'DeleteProductStorekeeperController?productID=' + id;
 				alert("Product successfully deleted");
 			} else {
 				return false;

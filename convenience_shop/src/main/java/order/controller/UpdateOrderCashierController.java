@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import order.dao.*;
-import order.model.*;
+import order.dao.OrderDAO;
+import order.model.Order;
 
 /**
- * Servlet implementation class UpdateOrderController
+ * Servlet implementation class UpdateOrderCashierController
  */
-@WebServlet("/UpdateOrderController")
-public class UpdateOrderController extends HttpServlet {
+@WebServlet("/UpdateOrderCashierController")
+public class UpdateOrderCashierController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderDAO dao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateOrderController() {
+    public UpdateOrderCashierController() {
         super();
         dao = new OrderDAO();
         // TODO Auto-generated constructor stub
@@ -37,7 +37,7 @@ public class UpdateOrderController extends HttpServlet {
 		// TODO Auto-generated method stub
 		int orderID = Integer.parseInt(request.getParameter("orderID"));
 		request.setAttribute("od", OrderDAO.getOrderById(orderID));
-		RequestDispatcher view = request.getRequestDispatcher("updateOrder.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("updateOrderCashier.jsp");
 		view.forward(request, response);
 	}
 
@@ -57,8 +57,8 @@ public class UpdateOrderController extends HttpServlet {
 		dao.updateOrder(od);
 		
 		request.setAttribute("orders", OrderDAO.getAllOrders());
-		RequestDispatcher view = request.getRequestDispatcher("listOrder.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("listOrderCashier.jsp");
 		view.forward(request, response);
 	}
-}
 
+}

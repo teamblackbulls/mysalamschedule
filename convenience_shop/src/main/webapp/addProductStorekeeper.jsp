@@ -171,7 +171,7 @@
 	<nav>
     <div class="menu">
       <div class="logo">
-        <a href="#">MasjidSalam</a>
+        <a href="#">ICT502</a>
       </div>
       <ul>
       	
@@ -192,7 +192,7 @@
 					</caption>
 					<fieldset class="form-group">
 						<label>Product ID</label> 
-						<input type="text" class="form-control" id="productID" name="productID" required="required" placeholder="P0001">
+						<input type="text" class="form-control" id="productID" name="productID" required="required" placeholder="1">
 					</fieldset>
 					<fieldset class="form-group">
 						<label>Product Name</label> 
@@ -201,7 +201,7 @@
 					
 					<fieldset class="form-group">
 						<label>Product Description</label> 
-						<input type="text" class="form-control" id="productdescription" name="productdescription" required="required">
+						<input type="text" class="form-control" id="productdescription" name="productdescription" required="required" placeholder="Color: Red">
 					</fieldset>
 	
 					<fieldset class="form-group">
