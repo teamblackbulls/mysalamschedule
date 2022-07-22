@@ -21,6 +21,7 @@ public class OrderDAO {
 	private int orderID, productID, quantity, employeeID;
 	private Date orderdate;
 	double totalamount;
+	private String productname;
 
 	
 	//add order
@@ -126,6 +127,10 @@ public class OrderDAO {
 		
 		return od;
 	}
+	
+	
+	
+	
 	
 	//delete product
 	public void deleteOrder(int orderID) {

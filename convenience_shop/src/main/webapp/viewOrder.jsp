@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +12,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 	
-	<title>Add Product</title>
+	<title>Order Details</title>
 	
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
 	<style type="text/css">
 		ul {
 		  list-style-type: none;
 		  margin: 0;
 		  padding: 0;
+		  
 		}
 		
 		li {
@@ -32,14 +35,7 @@
 		  padding: 14px 16px;
 		  text-decoration: none;
 		}
-		
-		li a:hover:not(.active) {
-			color: black;
-		}
-		
-		.active {
-		   color: grey;
-		}
+	
 		
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 		
@@ -114,7 +110,7 @@
 		}
 		.center{
 		  position: absolute;
-		  top: 52%;
+		  top: 40%;
 		  left: 50%;
 		  transform: translate(-50%, -50%);
 		  width: 100%;
@@ -122,13 +118,15 @@
 		  text-align: center;
 		}
 		.center .title{
-		  color: #fff;
-		  font-size: 55px;
+		  color: #A2B38B;
+		  font-size: 43px;
 		  font-weight: 600;
 		}
+		
+		
 		.center .sub_title{
-		  color: #fff;
-		  font-size: 30epx;
+		  color: #black;
+		  font-size: 66epx;
 		  font-weight: 600;
 		}
 		.center .btns{
@@ -159,71 +157,34 @@
 		.center .btns button:last-child{
 		  background: white;
 		  color: black;
-		}		
-	
-	
+		}	
 	</style>
+	
 </head>
-<body>	
+<body>
+<br>
 	<nav>
 	    <div class="menu">
 	      <div class="logo">
 	        <a href="#">ICT502</a>
 	      </div>
 	      <ul>
-	      	
-			<li><a href="ListProductController">Back</a>
+	        
+			<li><a href="ListOrderController">Back</a></li>
 		  </ul>
 	    </div>
-	</nav>
-	
-	<br><br><br><br>
-	
-	<div class="container col-md-5">
+	 </nav>
 
-		<div class="card">
-			<div class="card-body">
-			<form method="post" action="AddProductController">
-					<caption>
-						<h2> Add New Product </h2>
-					</caption>
-					<fieldset class="form-group">
-						<label>Product ID</label> 
-						<input type="text" class="form-control" id="productID" name="productID" required="required" placeholder="1">
-					</fieldset>
-					<fieldset class="form-group">
-						<label>Product Name</label> 
-						<input type="text" class="form-control" id="productname" name="productname" required="required" placeholder="Red Onion*">
-					</fieldset>
-					
-					<fieldset class="form-group">
-						<label>Product Description</label> 
-						<input type="text" class="form-control" id="productdescription" name="productdescription" required="required" placeholder="Color: Red">
-					</fieldset>
+	<div class="center">
+		<div class="title">Order Details</div><br>
 	
-					<fieldset class="form-group">
-						<label>Product Price (RM)</label> 
-						<input type="text" class="form-control" id="price" name="price" placeholder="2.00*">
-					</fieldset>
-					
-					<fieldset class="form-group">
-						<label><span>Category</span>
-						<select name="productcategory">
-							<option value="stationery">Stationery</option>
-							<option value="toiletries">Toiletries</option>
-							<option value="health care">Health Care</option>
-							<option value="groceries">Groceries</option>							
-						</select>
-						</label>
-					</fieldset>
-	
-					<button type="submit" class="btn btn-success">Submit</button>
-					<button type="reset" class="btn btn-success">Reset</button>
-			</form>
-			
-			</div>
-		</div>
-		
+		<fieldset>
+			<div class="sub_title"><b>Order ID  </b><c:out value="${od.orderID}"/></div>
+			<div class="sub_title"><b>Order Date  </b><c:out value="${od.orderdate}"/></div>
+			<div class="sub_title"><b>Product ID  </b><c:out value="${od.productID}"/></div>
+			<div class="sub_title"><b>Quantity  </b><c:out value="${od.quantity}"/></div>
+			<div class="sub_title"><b>Total Amount  </b><c:out value="${od.totalamount}"/></div>
+		</fieldset>
 	</div>
 </body>
 </html>
