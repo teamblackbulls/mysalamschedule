@@ -25,6 +25,5 @@ public class ListOrderDetailController extends HttpServlet {
 		view.forward(request, response);
 	}
 
-
 }
 
