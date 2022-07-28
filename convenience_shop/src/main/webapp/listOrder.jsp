@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>       
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>    
+<%@ page import="java.sql.*" %> 
+<%@ page import = "product.db.ConnectionManager" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,6 +199,10 @@
 	</style>
 </head>
 <body>
+<%
+long millis = System.currentTimeMillis();  
+Date orderdate = new java.sql.Date(millis);
+%>
 		<nav>
 		    <div class="menu">
 		      <div class="logo">
@@ -203,7 +210,7 @@
 		      </div>
 		      <ul>
 		      	<li><a href="managerHome.jsp">Home</a></li>
-		      	<li><a class="active" href="#ListOrderController">List Order</a></li>
+		      	<li><a class="active" href="ListOrderDetailController">List Order</a></li>
 				<li><a href="ListProductController">List Product</a></li>
 				<li><a href="ListEmployeeController">List Employee</a></li>
 				<li><a href="index.html">Logout</a></li>
@@ -218,37 +225,50 @@
 			<div class="title">List of Orders</div><br>
 			
 			<div class="button-section">
-	             <a href="addOrder.jsp"><button type="button">Add Order</button></a>
+	             <a href="AddOrderController?orderdate=<%=orderdate%>"><button type="button">Add Order</button></a>
 			</div>
 	
 			<br>
+	<%-- DATABASE --%>
+	<sql:setDataSource var="database" driver="oracle.jdbc.driver.OracleDriver"
+         url="jdbc:oracle:thin:@localhost:1521:xe"
+         user = "Shop"
+         password="system"  />
+    
+    <%-- ORDERS SQL --%>
+    <sql:query dataSource="${database}" var="orderlist">
+      SELECT orderid, orderdate, employeeid, grandtotal, COUNT(orderdetailid) AS "PRODUCTS" 
+      FROM orders
+      JOIN orderdetail
+      USING (orderid) 
+      GROUP BY orderid, orderdate, employeeid, grandtotal 
+      </sql:query>
 	
 			<table border="1">
 				<tr>
 					<th>Order ID</th>
 					<th>Order Date</th>
-					<th>Product ID</th>
-					<th>Quantity</th>
-					<th>Total Amount</th>
+					<th>Grand Total (RM)</th>
+					<th>Type of Products In this Order</th>
 				
 		
-					<th colspan="3">Action</th>
+					<th colspan="2">Action</th>
 				</tr>
-				<c:forEach items="${orders}" var="od" varStatus="orders">
-				<tr>
-					<td><c:out value="${od.orderID}"/></td>
+				<c:forEach items="${orderlist.rows}" var="od">
+			  	<tr>
+					<td><c:out value="${od.orderid}"/></td>
 					<td><c:out value="${od.orderdate}"/></td>
-					<td><c:out value="${od.productID}"/></td>
-					<td><c:out value="${od.quantity}"/></td>
-					<td><c:out value="${od.totalamount}"/></td>
+					<td><c:out value="${od.grandtotal}"/></td>
+					<td><c:out value="${od.products}"/></td>
 					
-					<td><a class="btn btn-warning" href="ViewOrderController?orderID=<c:out value="${od.orderID}"/>">View</a></td> 
-					<td><a class="btn btn-primary" href="UpdateOrderController?orderID=<c:out value="${od.orderID}"/>">Update</a></td>
+					<td><a class="btn btn-warning" href="viewOrder.jsp?orderID=<c:out value="${od.orderID}"/>">View</a></td> 
 					<td><button class="btn btn-danger" id="<c:out value="${od.orderID}"/>" onclick="confirmation(this.id)">Delete</button></td>
 				</tr>
 				</c:forEach>
 			</table>
 		</div>
+		
+
 		
 	<script>
 		function confirmation(id)

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,10 +159,63 @@
 		  background: white;
 		  color: black;
 		}	
-	</style>
+		
+	th, td {
+  font-family:'Motnserrat',sans-serif;
+  text-align: left;
+  font-size: 16px;
+  padding: 10px;
+
+}
+th {
+  background-color:#A2B38B;
+  color: white;
+}
+.col-span-25{
+	float:left;
+	width:25%;
+	margin-top:6px;
+}
+
+.col-span-75{
+	float:left;
+	width:75%;
+	margin-top:6px;
+}
+	
+</style>
 	
 </head>
 <body>
+<%
+	int orderid = Integer.parseInt(request.getParameter("orderID"));
+	int counter = 0;
+
+%>
+	<%-- DATABASE --%>
+	<sql:setDataSource var="database" driver="oracle.jdbc.driver.OracleDriver"
+         url="jdbc:oracle:thin:@localhost:1521:xe"
+         user = "Shop"
+         password="system"  />
+	
+	<%-- ORDER DETAILS SQL --%>
+    <sql:query dataSource="${database}" var="orderdetails">
+      SELECT *
+      FROM orders
+      JOIN orderdetail
+      USING (orderid)
+      JOIN product
+      USING (productid)
+      WHERE orderid = <%=orderid %>
+      </sql:query>
+      
+      <%-- ORDER SQL --%>
+    <sql:query dataSource="${database}" var="order">
+      SELECT *
+      FROM orders
+      WHERE orderid = <%=orderid %>
+      </sql:query>
+      
 <br>
 	<nav>
 	    <div class="menu">
@@ -170,21 +224,54 @@
 	      </div>
 	      <ul>
 	        
-			<li><a href="ListOrderController">Back</a></li>
+			<li><a href="listOrder.jsp">Back</a></li>
 		  </ul>
 	    </div>
 	 </nav>
 
 	<div class="center">
 		<div class="title">Order Details</div><br>
+		
+			<table  style="margin:50px 80px 30px 500px; text-align:center;" >
+		<c:forEach var="order" items="${order.rows}">
+		<tr>
+			<td id="col-span-25">Order ID:</td>
+			<td id="col-span-75">:&nbsp;<c:out value="${order.orderid}"/></td>
+		</tr>
+		
+		<tr>
+			<td id="col-span-25">Order Date</td>
+			<td id="col-span-75">:&nbsp;<c:out value="${order.orderdate}"/></td>
+		</tr>
+		
+		<tr>
+			<td id="col-span-25">Grand Total (RM)</td>
+			<td id="col-span-75">:&nbsp;<c:out value="${orde.grandtotal}"/></td>
+			
+		</tr>
+		</c:forEach>
+		</table>
+		
+          <div class="sub_title"><b>Products</b></div>
+			<table border="1" style="margin:50px 80px 30px 500px; text-align:center;">
+				<tr>
+					<th>No.</th>
+					<th>Product Name</th>
+					<th>Quantity</th>
+					<th>Total Amount (RM)</th>
+				</tr>
+			<c:forEach var="orderdetail" items="${orderdetails.rows}">
+			<% counter++; %>
+				<tr>
+					<td><%=counter %></td>
+					<td><c:out value="${orderdetail.productname}" /></td>
+					<td><c:out value="${orderdetail.quantity}" /></td>
+					<td><c:out value="${orderdetail.totalamount}" /></td>
+				</tr>
+			</c:forEach>
+			</table>
 	
-		<fieldset>
-			<div class="sub_title"><b>Order ID  </b><c:out value="${od.orderID}"/></div>
-			<div class="sub_title"><b>Order Date  </b><c:out value="${od.orderdate}"/></div>
-			<div class="sub_title"><b>Product ID  </b><c:out value="${od.productID}"/></div>
-			<div class="sub_title"><b>Quantity  </b><c:out value="${od.quantity}"/></div>
-			<div class="sub_title"><b>Total Amount  </b><c:out value="${od.totalamount}"/></div>
-		</fieldset>
+		
 	</div>
 </body>
 </html>

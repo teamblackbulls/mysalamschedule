@@ -1,64 +1,37 @@
 package order.controller;
-
 import java.io.IOException;
 import java.sql.Date;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import order.dao.*;
 import order.model.*;
+import OrderDao.*;
 
-/**
- * Servlet implementation class UpdateOrderController
- */
 @WebServlet("/UpdateOrderController")
 public class UpdateOrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private OrderDAO dao;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateOrderController() {
-        super();
-        dao = new OrderDAO();
-        // TODO Auto-generated constructor stub
-    }
+	private DaoOrder dao;
+    
+	   public UpdateOrderController() {
+	        super();
+	        dao = new DaoOrder();
+	    }
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			doPost(request, response);
+		}
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			Order or = new Order ();
+			
+			or.setOrderID(Integer.parseInt(request.getParameter("orderID")));
+			or.setGrandtotal(Double.parseDouble(request.getParameter("grandtotal")));
+			
+			dao.updateOrder(or);
+			
+			RequestDispatcher view = request.getRequestDispatcher("listOrder.jsp");
+			view.forward(request, response);
+		}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int orderID = Integer.parseInt(request.getParameter("orderID"));
-		request.setAttribute("od", OrderDAO.getOrderById(orderID));
-		RequestDispatcher view = request.getRequestDispatcher("updateOrder.jsp");
-		view.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Order od = new Order ();
-		
-		od.setOrderID(Integer.parseInt(request.getParameter("orderID")));
-		od.setOrderdate(Date.valueOf(request.getParameter("orderdate")));
-		od.setProductID(Integer.parseInt(request.getParameter("productID")));
-		od.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-		od.setTotalamount(Double.parseDouble(request.getParameter("totalamount")));
-		
-		dao.updateOrder(od);
-		
-		request.setAttribute("orders", OrderDAO.getAllOrders());
-		RequestDispatcher view = request.getRequestDispatcher("listOrder.jsp");
-		view.forward(request, response);
-	}
 }
-

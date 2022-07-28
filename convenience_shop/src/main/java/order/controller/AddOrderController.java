@@ -1,54 +1,42 @@
 package order.controller;
-
 import java.io.IOException;
-import java.sql.Date;
 
+import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import order.model.*;
+import OrderDao.*;
 
-import order.dao.OrderDAO;
-import order.model.Order;
-
-/**
- * Servlet implementation class AddOrderController
- */
 @WebServlet("/AddOrderController")
 public class AddOrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private OrderDAO dao;
+	private DaoOrder dao;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AddOrderController() {
         super();
-        dao = new OrderDAO();
-        // TODO Auto-generated constructor stub
+        dao = new DaoOrder();
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	doPost(request,response);
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Order od = new Order();
-
-		od.setOrderID(Integer.parseInt(request.getParameter("orderID")));
-		od.setOrderdate(Date.valueOf(request.getParameter("orderdate")));
-		od.setProductID(Integer.parseInt(request.getParameter("productID")));
-		od.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-		od.setTotalamount(Double.parseDouble(request.getParameter("totalamount")));
+		Order or = new Order();
+		or.setOrderdate(Date.valueOf(request.getParameter("orderdate")));
 		
-		dao.addOrder(od); //invoke method addOrder() in OrderDAO
+		int orderid = dao.addOrder(or); //invoke method addOrder() in OrderDAO
 		
-		request.setAttribute("orders", OrderDAO.getAllOrders());
-		RequestDispatcher view = request.getRequestDispatcher("listOrder.jsp");
-		view.forward(request,  response);
+		request.setAttribute("orderid", orderid);
+		RequestDispatcher view = request.getRequestDispatcher("addOrder.jsp");
+		view.forward(request, response);
 	}
-
+	
+	
 }

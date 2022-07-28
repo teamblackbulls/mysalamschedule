@@ -1,6 +1,7 @@
 package product.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -36,12 +37,11 @@ public class ProductDAO {
 			con = ConnectionManager.getConnection();
 			
 			//create statement
-			ps = con.prepareStatement("INSERT INTO PRODUCT(productID, productname, productdescription, price, productcategory)VALUES(?,?,?,?,?)");
-			ps.setInt(1,productID);
-			ps.setString(2,productname);
-			ps.setString(3, productdescription);
-			ps.setDouble(4,price);
-			ps.setString(5,productcategory);
+			ps = con.prepareStatement("INSERT INTO PRODUCT(productID, productname, productdescription, price, productcategory)VALUES(product_sequence.nextval,?,?,?,?)");
+			ps.setString(1,productname);
+			ps.setString(2, productdescription);
+			ps.setDouble(3,price);
+			ps.setString(4,productcategory);
 
 			//execute query
 			ps.executeUpdate();

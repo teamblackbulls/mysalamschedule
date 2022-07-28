@@ -189,7 +189,7 @@
 					</caption>
 					<fieldset class="form-group">
 						<label>Product ID</label> 
-						<input type="text" class="form-control" id="productID" name="productID" required="required" placeholder="1">
+						<input type="hidden" class="form-control" id="productID" name="productID"  placeholder="1">
 					</fieldset>
 					<fieldset class="form-group">
 						<label>Product Name</label> 

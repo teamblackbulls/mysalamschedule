@@ -162,7 +162,7 @@
            <div class="sub_title"> This system also allows manager to view and delete orders, products and employees. 
         </div>
     <div class="btns">
-      <button onclick="location.href='ListOrderController'" >Manage Orders</button>
+      <button onclick="location.href='listOrder.jsp'" >Manage Orders</button>
       <button onclick="location.href='ListProductController'">Manage Products</button>
       <button onclick="location.href='ListEmployeeController'" type="button">Manage Employees</button>
     </div>

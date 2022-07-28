@@ -190,7 +190,7 @@
            <div class="sub_title"> This system also allows cashier to view and delete orders. 
         </div>
     <div class="btns">
-      <button onclick="location.href='ListOrderCashierController'" >Manage Orders</button>
+      <button onclick="location.href='ListOrderDetailCashierController'" >Manage Orders</button>
     </div>
   </div>
 	
