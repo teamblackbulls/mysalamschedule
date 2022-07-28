@@ -24,6 +24,5 @@ public class ListOrderDetailController extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("listOrder.jsp");
 		view.forward(request, response);
 	}
-
 }
 
