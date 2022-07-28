@@ -187,10 +187,7 @@
 					<caption>
 						<h2> Add New Product </h2>
 					</caption>
-					<fieldset class="form-group">
-						<label>Product ID</label> 
-						<input type="hidden" class="form-control" id="productID" name="productID"  placeholder="1">
-					</fieldset>
+					
 					<fieldset class="form-group">
 						<label>Product Name</label> 
 						<input type="text" class="form-control" id="productname" name="productname" required="required" placeholder="Red Onion*">

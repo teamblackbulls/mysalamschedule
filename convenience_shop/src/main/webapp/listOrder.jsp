@@ -249,7 +249,7 @@ Date orderdate = new java.sql.Date(millis);
 					<th>Order ID</th>
 					<th>Order Date</th>
 					<th>Grand Total (RM)</th>
-					<th>Type of Products In this Order</th>
+					<th>Number of Products ID</th>
 				
 		
 					<th colspan="2">Action</th>

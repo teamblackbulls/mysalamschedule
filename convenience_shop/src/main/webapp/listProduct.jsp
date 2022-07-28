@@ -206,14 +206,14 @@
 		      </div>
 		      <ul>
 		      	<li><a href="managerHome.jsp">Home</a></li>
-		      	<li><a href="ListOrderController">List Order</a></li>
+		      	<li><a href="ListOrderDetailController">List Order</a></li>
 				<li><a class="active" href="#ListProductController">List Product</a></li>
 				<li><a href="ListEmployeeController">List Employee</a></li>
 				<li><a href="index.html">Logout</a></li>
 			  </ul>
 		    </div>
 	    </nav>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div class="center">
 			<div class="title">List of Products</div><br>
 			
@@ -222,7 +222,8 @@
 			</div>
 			
 			<br>
-	
+
+           <div align="center">
 			<table>
 				<tr>
 					<th>Product ID</th>
@@ -246,7 +247,63 @@
 					<td><button class="btn btn-danger" id="<c:out value="${p.productID}"/>" onclick="confirmation(this.id)">Delete</button></td>
 				</tr>
 				</c:forEach>
-			</table>
+				
+			</table><br><br>
+			
+			<div class="title">Search by Product Name or Product Category</div>
+
+         <div class="col-md-4">
+            <form action="" method="get" style="margin:25px 50px 25px 50px; position:center;" >
+                <input type="text" class="form-control" name="q" placeholder="Search here..."/>
+            </form>
+        </div>
+
+            <%@page import="product.db.ConnectionManager" %>
+            <%@page import="java.sql.*" %>
+            <div align="center">
+                <table>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price (RM)</th>
+                        <th>Category</th>
+                        <th colspan="3">Actions</th>
+                    </tr>
+            <%
+            try {
+
+                Connection con = ConnectionManager.getConnection();  
+                Statement stat = con.createStatement();
+                String query = request.getParameter("q");
+                String data = "select * from product where productname like '%" + query + "%' OR LOWER(productname) LIKE '%" + query + "%' OR UPPER(productname) LIKE '%" + query + "%' or productcategory like '%" + query + "%'";
+
+                ResultSet res = stat.executeQuery(data);
+                while(res.next()) {
+
+                %>
+
+                    <tr>
+                        <td><%=res.getString("productID")%></td>
+                        <td><%=res.getString("productname")%></td>
+                        <td><%=res.getString("productdescription")%></td>
+                        <td><%=res.getString("price")%></td>
+                        <td><%=res.getString("productcategory")%></td>
+
+                        <td><a class="btn btn-primary" href="UpdateProductStorekeeperController?productID=<c:out value="${p.productID}"/>">Update</a></td>
+
+                        <td><button class="btn btn-danger" id="<c:out value="${p.productID}"/>" onclick="confirmation(this.id)">Delete</button></td>
+                    </tr>
+                    <%
+                }
+
+            }
+            catch (Exception e) {}
+            %>
+
+
+                </table>
+                </div><br>
 		</div>
 	
 	<script>

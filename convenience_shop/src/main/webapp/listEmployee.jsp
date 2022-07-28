@@ -197,7 +197,7 @@
 		      </div>
 		      <ul>
 		      	<li><a href="managerHome.jsp">Home</a></li>
-		      	<li><a href="ListOrderController">List Order</a></li>
+		      	<li><a href="ListOrderDetailController">List Order</a></li>
 				<li><a href="ListProductController">List Product</a></li>	
 				<li><a class="active" href="#ListEmployeeController">List Employee</a></li>			
 				<li><a href="index.html">Logout</a></li>

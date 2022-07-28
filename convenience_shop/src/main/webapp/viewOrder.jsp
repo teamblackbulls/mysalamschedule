@@ -111,7 +111,7 @@
 		}
 		.center{
 		  position: absolute;
-		  top: 40%;
+		  top: 55%;
 		  left: 50%;
 		  transform: translate(-50%, -50%);
 		  width: 100%;
@@ -228,7 +228,7 @@ th {
 		  </ul>
 	    </div>
 	 </nav>
-
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<div class="center">
 		<div class="title">Order Details</div><br>
 		
@@ -246,7 +246,7 @@ th {
 		
 		<tr>
 			<td id="col-span-25">Grand Total (RM)</td>
-			<td id="col-span-75">:&nbsp;<c:out value="${orde.grandtotal}"/></td>
+			<td id="col-span-75">:&nbsp;<c:out value="${order.grandtotal}"/></td>
 			
 		</tr>
 		</c:forEach>
